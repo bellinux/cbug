@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Chrome camera bug demo</title>
+</head>
+
+<body>
+<p>Please activate the webcam.</p>
+</body>
+
+<script>
+
+var track;
+class ChromeBug {
+	constructor() {
+		var videoTag,
+        onWebCamFail = function(e) {
+			alert("Error: open the console");
+			console.log(e);
+        },
+        onWebCamSucceed = function(stream) {
+			track = stream.getVideoTracks()[0];
+			track.applyConstraints({advanced: [{exposureMode: "manual",	exposureTime: 4, brightness: 0,	saturation: 0} ]});
+            videoTag.srcObject = stream;
+            videoTag.play();
+        },
+
+        initCapture = function() {
+			videoTag = document.createElement('video');
+			videoTag.setAttribute('autoplay', true);
+			navigator.mediaDevices.getUserMedia({ video: {width: {exact: 640}, height: {exact: 480}} })
+				.then(onWebCamSucceed)
+				.catch(onWebCamFail);
+		}
+		this.onCalculated = function (callback) {
+			calculatedCallbacks.push(callback);
+		};
+		
+		initCapture();
+	}
+}
+
+let videoStream = new ChromeBug();
+
+
+</script>
+
+</html>
