@@ -34,9 +34,6 @@ class ChromeBug {
 				track.applyConstraints({advanced: [{saturation: 50} ]});
 			}
 			
-			if (capabilities.frameRate.min){
-				track.applyConstraints({advanced: [{frameRate: 30} ]});
-			}
 			
 			if (capabilities.sharpness.min){
 				track.applyConstraints({advanced: [{frameRate: 4} ]});
