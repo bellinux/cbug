@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Chrome camera bug demo</title>
+</head>
+
+<body>
+<p>Please activate the webcam.</p>
+</body>
+
+<script>
+
+var track;
+class ChromeBug {
+	constructor() {
+		var videoTag,
+        onWebCamFail = function(e) {
+			alert("Error: open the console");
+			console.log(e);
+        },
+        onWebCamSucceed = function(stream) {
+			track = stream.getVideoTracks()[0];
+			let capabilities=track.getCapabilities()
+			
+			if (capabilities.exposureTime.min){
+				track.applyConstraints({advanced: [{exposureMode: "continuous" } ]});
+			}
+			
+			if (capabilities.brightness.min){
+				track.applyConstraints({advanced: [{brightness: 128} ]});
+			}
+			
+			if (capabilities.saturation.min){
+				track.applyConstraints({advanced: [{saturation: 50} ]});
+			}
+			
+			if (capabilities.frameRate.min){
+				track.applyConstraints({advanced: [{frameRate: 30} ]});
+			}
+			
+			if (capabilities.sharpness.min){
+				track.applyConstraints({advanced: [{frameRate: 4} ]});
+			}
+			
+			if (capabilities.colorTemperature.min){
+				track.applyConstraints({advanced: [{frameRate: 4500} ]});
+			}
+            videoTag.srcObject = stream;
+            videoTag.play();
+        },
+
+        initCapture = function() {
+			videoTag = document.createElement('video');
+			videoTag.setAttribute('autoplay', true);
+			navigator.mediaDevices.getUserMedia({ video: true })
+				.then(onWebCamSucceed)
+				.catch(onWebCamFail);
+		}
+		this.onCalculated = function (callback) {
+			calculatedCallbacks.push(callback);
+		};
+		
+		initCapture();
+	}
+}
+
+let videoStream = new ChromeBug();
+
+</script>
+
+</html>
