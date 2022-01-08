@@ -23,24 +23,24 @@ class ChromeBug {
 			let capabilities=track.getCapabilities()
 			
 			
-			if (capabilities.exposureTime.min){
+			if (capabilities.exposureTime.min !== undefined){
 				track.applyConstraints({advanced: [{exposureMode: "continuous" } ]});
 			}
 			
-			if (capabilities.brightness.min){
+			if (capabilities.brightness.min !== undefined){
 				track.applyConstraints({advanced: [{brightness: 128} ]});
 			}
 			
-			if (capabilities.saturation.min){
+			if (capabilities.saturation.min !== undefined){
 				track.applyConstraints({advanced: [{saturation: 50} ]});
 			}
 			
 			
-			if (capabilities.sharpness.min){
+			if (capabilities.sharpness.min !== undefined){
 				track.applyConstraints({advanced: [{sharpness: 4} ]});
 			}
 			
-			if (capabilities.colorTemperature.min){
+			if (capabilities.colorTemperature.min !== undefined){
 				track.applyConstraints({advanced: [{colorTemperature: 4500} ]});
 			}
             videoTag.srcObject = stream;
