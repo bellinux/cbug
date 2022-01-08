@@ -36,11 +36,11 @@ class ChromeBug {
 
 			
 			if (capabilities.sharpness.min){
-				track.applyConstraints({advanced: [{frameRate: capabilities.sharpness.min} ]});
+				track.applyConstraints({advanced: [{sharpness: capabilities.sharpness.min} ]});
 			}
 			
 			if (capabilities.colorTemperature.min){
-				track.applyConstraints({advanced: [{frameRate: capabilities.colorTemperature.min} ]});
+				track.applyConstraints({advanced: [{colorTemperature: capabilities.colorTemperature.min} ]});
 			}
 			
 			
