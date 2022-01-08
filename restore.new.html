@@ -22,6 +22,7 @@ class ChromeBug {
 			track = stream.getVideoTracks()[0];
 			let capabilities=track.getCapabilities()
 			
+			
 			if (capabilities.exposureTime.min){
 				track.applyConstraints({advanced: [{exposureMode: "continuous" } ]});
 			}
