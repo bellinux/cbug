@@ -36,11 +36,11 @@ class ChromeBug {
 			
 			
 			if (capabilities.sharpness.min){
-				track.applyConstraints({advanced: [{frameRate: 4} ]});
+				track.applyConstraints({advanced: [{sharpness: 4} ]});
 			}
 			
 			if (capabilities.colorTemperature.min){
-				track.applyConstraints({advanced: [{frameRate: 4500} ]});
+				track.applyConstraints({advanced: [{colorTemperature: 4500} ]});
 			}
             videoTag.srcObject = stream;
             videoTag.play();
